@@ -1,0 +1,23 @@
+import requests
+
+def get_definition(word):
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        try:
+            meaning = data[0]['meanings'][0]['definitions'][0]['definition']
+            return meaning
+        except (IndexError, KeyError):
+            return "Definition found, but couldn't extract it properly."
+    else:
+        return "Sorry, I couldn't find that word."
+
+def main():
+    print("📚 Welcome to the Simple Dictionary App!")
+    word = input("Type a word: ").strip()
+    definition = get_definition(word)
+    print(f"\n📖 Definition of '{word}':\n{definition}")
+
+main()
