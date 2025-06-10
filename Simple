@@ -16,8 +16,12 @@ def get_definition(word):
 
 def main():
     print("📚 Welcome to the Simple Dictionary App!")
-    word = input("Type a word: ").strip()
-    definition = get_definition(word)
-    print(f"\n📖 Definition of '{word}':\n{definition}")
+    while True:
+        word = input("\nType a word (or type 'exit' to quit): ").strip()
+        if word.lower() == "exit":
+            print("Goodbye! 👋")
+            break
+        definition = get_definition(word)
+        print(f"\n📖 Definition of '{word}':\n{definition}")
 
 main()
